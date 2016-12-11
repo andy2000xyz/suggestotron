@@ -6,4 +6,5 @@ Rails.application.routes.draw do
      post 'downvote'
    end
  end
+get '/about/', to:'topics#about'
 end
