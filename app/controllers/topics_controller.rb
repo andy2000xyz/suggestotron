@@ -4,8 +4,8 @@ class TopicsController < ApplicationController
   # GET /topics
   # GET /topics.json
   def index
-    @topics = Topic.all.order('count desc')
-  end
+   @topics = Topic.all.sort_by{ |a| a.votes.count }.reverse
+ end
 
   # GET /topics/1
   # GET /topics/1.json
@@ -64,7 +64,7 @@ class TopicsController < ApplicationController
   def upvote
   @topic=Topic.find(params[:id])
   @topic.votes.create
-  @topic.update_attributes(count: @topic.votes.count)
+
   redirect_to(topics_path)
 end
 
